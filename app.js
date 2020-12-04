@@ -3,6 +3,8 @@ const Engineer = require("./lib/Engineer");
 const Intern = require("./lib/Intern");
 const question = require("./lib/question");
 const managerquestion = require("./lib/managerquestion");
+const { ENGINEER } = require('./lib/color');
+const { INTERN } = require('./lib/color');
 const inquirer = require("inquirer");
 const path = require("path");
 const fs = require("fs");
@@ -26,14 +28,14 @@ inquirer.prompt(managerquestion).then((managerresponse) => {
 function employees() {
     // Second prompt with questions to add Engineers and Interns
     inquirer.prompt(question).then((response) => {
-        if (response.role === "Engineer") {
+        if (response.role === `${ENGINEER}`) {
             // Create Engineer Object using Engineer Class
             let emp = new Engineer(response.name,response.email,response.id, response.github )
             // Add Engineer to team array
             team.push(emp)
             
         }
-        if (response.role === "Intern") {
+        if (response.role === `${INTERN}`) {
             // Create Inter Object using Inter Class
             let emp = new Intern(response.name,response.email,response.id, response.school )
             // Add Engineer to team array
